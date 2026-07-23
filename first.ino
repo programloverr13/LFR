@@ -9,6 +9,7 @@ const int bin2=;
 
 void forward()
 {
+    delay(40);
     digitalWrite(ain1,HIGH);
     digitalWrite(ain2,LOW);
     digitalWrite(bin1,HIGH);
@@ -17,6 +18,7 @@ void forward()
 }
 void backward()
 {
+    delay(40);
     digitalWrite(ain1,LOW);
     digitalWrite(ain2,HIGH);
     digitalWrite(bin1,LOW);
@@ -49,6 +51,7 @@ void setup()
     pinMode(pwmb,OUTPUT);
     pinMode(bin1,OUTPUT);
     pinMode(bin2,OUTPUT);
+    Serial.begin(9600);
 }
 void loop()
 {
