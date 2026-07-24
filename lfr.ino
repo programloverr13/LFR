@@ -5,23 +5,24 @@ const int pwmb=6;
 const int bin1=7;
 const int bin2=8;
 
-void forward()
+void forward(int i)
+//forward(speed)
 {
     delay(10);
     digitalWrite(ain1,HIGH);
     digitalWrite(ain2,LOW);
     digitalWrite(bin1,HIGH);
     digitalWrite(bin2,LOW);
-    
+    speed(i);
 }
-void backward()
+void backward(int i)
 {
     delay(40);
     digitalWrite(ain1,LOW);
     digitalWrite(ain2,HIGH);
     digitalWrite(bin1,LOW);
     digitalWrite(bin2,HIGH);
-    
+    speed(i);
 }
 void speed(int i)
 {
@@ -58,9 +59,9 @@ void tl180()
     digitalWrite(ain1,HIGH);
     digitalWrite(ain2,LOW);
     analogWrite(pwma,200);
-    digitalWrite(bin1,LOW);
-    digitalWrite(bin2,LOW);
-    delay(4000);
+    digitalWrite(bin1,HIGH);
+    digitalWrite(bin2,HIGH);
+    delay(2000);
 }
 void setup()
 {
@@ -74,19 +75,9 @@ void setup()
 }
 void loop()
 {
-    forward();
-    speed(100);
-    delay(8000);
+    forward(100);
+    delay(5000);
     tl180();
-    forward();delay(8000);
-    // digitalWrite(ain1,LOW);
-    // digitalWrite(ain2,LOW);
-    // delay(5000);
-    // slow_fast();
-    // fast_slow();
-    // backward();
-    //digitalWrite(ain1,LOW);
-    //digitalWrite(ain2,LOW);
-    // slow_fast();
-    // fast_slow();
+    forward(100);
+    delay(5000);
 }
