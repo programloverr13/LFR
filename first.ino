@@ -1,15 +1,13 @@
-#include<Arduino.h>
-
-const int pwma=;
-const int ain1=;
-const int ain2=;
-const int pwmb=;
-const int bin1=;
-const int bin2=;
+const int pwma=3;
+const int ain1=4;
+const int ain2=5;
+const int pwmb=6;
+const int bin1=7;
+const int bin2=8;
 
 void forward()
 {
-    delay(40);
+    delay(10);
     digitalWrite(ain1,HIGH);
     digitalWrite(ain2,LOW);
     digitalWrite(bin1,HIGH);
@@ -24,6 +22,11 @@ void backward()
     digitalWrite(bin1,LOW);
     digitalWrite(bin2,HIGH);
     
+}
+void speed(int i)
+{
+    analogWrite(pwma,i);
+    analogWrite(pwmb,i);
 }
 void slow_fast()
 {
@@ -43,6 +46,22 @@ void fast_slow()
         delay(10);
     }
 }
+void stop()
+{
+    digitalWrite(ain1,LOW);
+    digitalWrite(ain2,LOW);
+    digitalWrite(bin1,LOW);
+    digitalWrite(bin2,LOW);
+}
+void tl180()
+{
+    digitalWrite(ain1,HIGH);
+    digitalWrite(ain2,LOW);
+    analogWrite(pwma,200);
+    digitalWrite(bin1,LOW);
+    digitalWrite(bin2,LOW);
+    delay(4000);
+}
 void setup()
 {
     pinMode(pwma,OUTPUT); 
@@ -56,9 +75,18 @@ void setup()
 void loop()
 {
     forward();
-    slow_fast();
-    fast_slow();
-    backward();
-    slow_fast();
-    fast_slow();
+    speed(100);
+    delay(8000);
+    tl180();
+    forward();delay(8000);
+    // digitalWrite(ain1,LOW);
+    // digitalWrite(ain2,LOW);
+    // delay(5000);
+    // slow_fast();
+    // fast_slow();
+    // backward();
+    //digitalWrite(ain1,LOW);
+    //digitalWrite(ain2,LOW);
+    // slow_fast();
+    // fast_slow();
 }
