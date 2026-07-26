@@ -1,7 +1,7 @@
-const int s[4]={};
-const int sig=;
-
-int readings[14];
+const int s[4]={4,5,6,7};
+const int sig=A0;
+const int sensor_count=14;
+int reading[14];
 
 void setup()
 {
@@ -12,9 +12,6 @@ void setup()
     pinMode(sig,INPUT);
     Serial.begin(9600);
 }
-// void binBit(int m, int n)
-// {
-
 void read()
 {
     for(int i=0;i<14;i++)
@@ -25,7 +22,7 @@ void read()
             digitalWrite(s[j],(b%2==0)?LOW:HIGH);
             b/=2;
         }
-        readings[i]=analogRead(sig);
+        reading[i]=analogRead(sig);
     }
 }
 void loop()
@@ -33,7 +30,7 @@ void loop()
     read();
     for(int i=0;i<14;i++)
     {
-        Serial.print(readings[i]);
+        Serial.print(reading[i]);
         Serial.print("\t");
     }
     Serial.println();
