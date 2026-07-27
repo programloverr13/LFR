@@ -17,6 +17,7 @@ const int center=7;
 int totalRead=0;  
 int wSum=0;
 int error=0;
+
 void setup()
 {
     pinMode(sig,INPUT);
