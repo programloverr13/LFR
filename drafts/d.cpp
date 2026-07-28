@@ -1,6 +1,11 @@
 #include<iostream>
 using namespace std;
-main()
+int main()
 {
-    cout<<getBit(5,0);
+    int a=10;
+    int b=3;
+    int w=1;
+    float c=(float)a/b-w;
+    // (float)(wSum/(totalRead)-center)
+    cout<<c;
 }
