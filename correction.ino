@@ -1,8 +1,9 @@
 void calcCorrect()
 {
   correction=error*kp;
-
-  correction-=kd*(error-pError);
+  int de=error-pError;
+  (abs(de)>1)?
+  correction-=kd*abs(de)
 }
 
 void mkCorrect()
