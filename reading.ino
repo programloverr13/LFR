@@ -1,9 +1,9 @@
 void readSensors()
 {
-    for(int i=0;i<14;i++)
+    for(uint8_t i=0;i<14;i++)
     {
-        int b=15-i;
-        for(int j=0;j<4;j++)
+        uint8_t b=15-i;
+        for(uint8_t j=0;j<4;j++)
         {
             digitalWrite(s[j],b%2);b/=2;
         }
@@ -21,7 +21,7 @@ void readSensors()
 }
 void showReading()
 {
-    for(int i=0;i<14;i++)
+    for(uint8_t i=0;i<14;i++)
     {
         Serial.print((reading[i]));//<100)?0:1);
         Serial.print("  ");

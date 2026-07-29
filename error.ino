@@ -1,11 +1,15 @@
 void calcError()
 {
-//  for(int i=0;i<sensor_count;i++){
-//    
-//  }
-  error=(float)wSum/totalRead-center;
+  //  for(int i=0;i<sensor_count;i++){
+  //
+  //  }
+  if (totalRead > 0)
+  {
+    pError=error;                                           
+    error = wSum / totalRead - center;
+  }
 }
-//void calcPos()
+// void calcPos()
 //{
-//  pos=-1*(center-wSum/totalRead);
-//}
+//   pos=-1*(center-wSum/totalRead);
+// }

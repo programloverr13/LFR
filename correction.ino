@@ -1,16 +1,21 @@
 void calcCorrect()
 {
   correction=error*kp;
+
+  correction+=kd
 }
 
 void mkCorrect()
 {
-  if(bspeed>correction) wheel(bspeed-correction,bspeed+correction);
+//  if(bspeed>correction) {
+//    wheel(bSpeed-correction,bSpeed+correction);
+//    delay(10);
+//  }
 
 
 
-  // if(correction==0) wheel(bSpeed,bSpeed);
-  // else if(correction<0) wheel(bspeed-abs(correction),bspeed+abs(correction));
-  // else if(correction>0) wheel(bspeed+abs(correction),bspeed-abs(correction));
+   if(correction==0) wheel(bSpeed,bSpeed);
+   else if(correction<0) wheel(bSpeed-abs(correction),bSpeed+abs(correction));
+   else if(correction>0) wheel(bSpeed+abs(correction),bSpeed-abs(correction));
   
 }
