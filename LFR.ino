@@ -17,6 +17,7 @@ const uint8_t bSpeed = 0;
 const float center = 7.3f;
 uint16_t totalRead = 0;
 uint16_t wSum = 0;
+float pError = 0;
 float error = 0;
 
 // void read(){}
@@ -54,14 +55,14 @@ void loop()
     showReading();
     calcError();
     calcCorrect();
-    mkCorrect();
-    free();
+    // mkCorrect();
+    // free();
 
-    //    Serial.println(error);
-    //    Serial.println(correction);
-    //    delay(1000);
-    //    Serial.println();Serial.println();Serial.println();Serial.println();Serial.println();
-    //    free();
+       Serial.println(error);
+       Serial.println(correction);
+       delay(1000);
+       Serial.println();Serial.println();Serial.println();Serial.println();Serial.println();
+       free();
 
     //     calcCorrect();
     // mkCorrect();

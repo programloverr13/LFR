@@ -2,7 +2,7 @@ void calcCorrect()
 {
   correction=error*kp;
 
-  correction+=kd
+  correction-=kd*(error-pError);
 }
 
 void mkCorrect()
