@@ -9,12 +9,13 @@ const uint8_t bin2 = 10;
 
 const uint8_t sensor_count = 14;
 uint16_t reading[14];
-uint8_t bw[14];
+uint16_t wThreshold[14]={85, 81, 79, 78, 78, 80, 82, 80, 80, 94, 81, 86, 82, 91};
+uint8_t bwRead[14];
 uint16_t wTh = 0;
 uint16_t bTh = 1023;
 
-const float kp = 10;
-const float kd = 60;
+const float kp = 15;
+const float kd = 10;
 float corr = 0;
 const uint8_t bSpeed = 60;
 const float center = 7.66;
@@ -23,10 +24,10 @@ float err = 0;
 uint16_t totalRead = 0;
 uint32_t wSum = 0;
 
-const uint8_t tspdH = 180;
-const uint8_t tspdL = 60;
+const uint8_t tspdH = bSpeed+70;
+const uint8_t tspdL = 70;
 uint16_t startBlack = 450;
-uint8_t isBlack = 0;
+uint8_t blackAmount = 0;
 uint8_t isLeft = 0;
 uint8_t isRight = 0;
 
@@ -47,18 +48,9 @@ void setup()
 void loop()
 {
     readSensors();
-    isTurn();
+    decide();
+    serialMonitor();
 
-    showReading();
-    showBlack();
-    Serial.println(err);
-    Serial.println(corr);
-    delay(150);
-    Serial.println();
-    Serial.println();
-    Serial.println();
-    Serial.println();
-    Serial.println();
 }
 
 

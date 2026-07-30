@@ -1,8 +1,16 @@
 void calcCorrect()
 {
-  corr = err * kp;
-  int de = err - pErr;
-  corr += kd * de;
+  float de = err - pErr;
+  corr = (err * kp);
+  Serial.print("P corr  ");
+  Serial.println(corr);
+  
+  corr += (kd * de);
+  Serial.print("PD corr  ");
+  Serial.println(corr);
+
+  Serial.print("de  ");
+  Serial.println(de);
 }
 
 void mkCorrect()

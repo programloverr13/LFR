@@ -1,44 +1,44 @@
 void tFree()
 {
-    isBlack = 0;
+    blackAmount = 0;
     isLeft = 0;
     isRight = 0;
 }
-String isTurn()
+void decide()
 {
     tFree();
     for (uint8_t i = 3; i <= 10; i++)
     {
-        isBlack += bw[i];
+        blackAmount += bwRead[i];
         if (i <= 5)
-            isLeft += bw[i];
+            isLeft += bwRead[i];
         if (i >= 8)
-            isRight += bw[i];
+            isRight += bwRead[i];
     }
-    if (isBlack < 1)
+    if (blackAmount ==0)
     {
         lost();
-        return "aWhite";
+        Serial.println("aWhite");
     }
-    // else if (isBlack > 7)
-    // {
-    //     intersection();
-    //     return "aBlack";
-    // }
-    // else if (isLeft == 0 && isRight != 0)
-    // {
-    //     tR();
-    //     return "tR";
-    // }
-    // else if (isRight == 0 && isLeft != 0)
-    // {
-    //     tL();
-    //     return "tL";
-    // }
+    else if (blackAmount > 7)
+    {
+        intersection();
+        Serial.println("aBlack");
+    }
+    else if (isLeft == 0 && isRight != 0)
+    {
+        tR();
+        Serial.println("tR");
+    }
+    else if (isRight == 0 && isLeft != 0)
+    {
+        tL();
+        Serial.println("tL");
+    }
     else
     {
         fLine();
-        return "fLine";
+        Serial.println("fLine");
     }
 }
 // void turn(char st)
@@ -54,11 +54,16 @@ void fLine()
 }
 void tL()
 {
-    wheel(tspdL, tspdH);
+    // wheel(tspdL, tspdH);
+    wheel(0, tspdH);
+    delay(80);
+    wheel(-tspdL, tspdH);
 }
 void tR()
 {
-    wheel(tspdH, tspdL);
+    wheel(tspdH, 0);
+    delay(80);
+    wheel(tspdH, -tspdL);
 }
 void intersection()
 {

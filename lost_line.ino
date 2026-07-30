@@ -1,4 +1,5 @@
 void lost()
 {
-    wheel(0,0);
+    // wheel(0,0);
+    tL();
 }
