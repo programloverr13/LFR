@@ -1,24 +1,52 @@
-int isTrun()
+void tFree()
 {
+    isBlack = 0;
+    isLeft = 0;
+    isRight = 0;
+}
+String isTurn()
+{
+    tFree();
     for (uint8_t i = 3; i <= 10; i++)
     {
         isBlack += bw[i];
-        if(i<=5) isLeft += bw[i];
-        if(i>=8) isRight += bw[i];
+        if (i <= 5)
+            isLeft += bw[i];
+        if (i >= 8)
+            isRight += bw[i];
     }
     if (isBlack == 0)
+    {
         lost();
-    else if (isBlack >7)
-        intersect();
-    else if (isLeft == 0)
+        return "aWhite";
+    }
+    else if (isBlack > 7)
+    {
+        intersection();
+        return "aBlack";
+    }
+    else if (isLeft == 0 && isRight != 0)
+    {
         tR();
-    else if (isRight == 0)
+        return "tR";
+    }
+    else if (isRight == 0 && isLeft != 0)
+    {
         tL();
+        return "tL";
+    }
     else
-        return 0;
-    return 1;
+    {
+        fLine();
+        return "fLine";
+    }
 }
-void stLine()
+// void turn(char st)
+// {
+//     switch(st)
+//     {}
+// }
+void fLine()
 {
     readSensors();
     calcError();
@@ -27,11 +55,11 @@ void stLine()
 }
 void tL()
 {
-    wheel(tspdL,tspdH);
+    wheel(tspdL, tspdH);
 }
 void tR()
 {
-    wheel(tspdH,tspdL);
+    wheel(tspdH, tspdL);
 }
 void intersection()
 {

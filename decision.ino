@@ -1,4 +1,4 @@
-if(isTurn()==0)
-{
-    stLine()
-}
+// if(isTurn()==0)
+// {
+//     stLine()
+// }

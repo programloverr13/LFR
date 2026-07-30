@@ -1,11 +1,5 @@
-void sFree()
-{
-    totalRead = 0;
-    wSum = 0;
-}
 void readSensors()
 {
-    sFree();
     for(uint8_t i=0;i<14;i++)
     {
         uint8_t b=15-i;

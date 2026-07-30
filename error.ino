@@ -1,5 +1,11 @@
+void sFree()
+{
+    totalRead = 0;
+    wSum = 0;
+}
 void calcError()
 {
+  sFree();
   for (uint8_t i = 3; i <= 10; i++)
   {
     wSum += (i + 1) * reading[i];
