@@ -1,22 +1,25 @@
 void calcCorrect()
 {
-  correction=error*kp;
-  int de=error-pError;
-  (abs(de)>1)?
-  correction-=kd*abs(de)
+  corr = err * kp;
+  int de = err - pErr;
+  corr += kd * de;
+  // if(abs(de)>0) wheel(bSpeed+kd*de,bSpeed-kd*de);
+  // else if(de<0 && abs(err)<2) wheel(bSpeed-kd*de,bSpeed-kd*de);
+
+  // wheel(bSpeed-corr,bSpeed+corr);
 }
 
 void mkCorrect()
 {
-//  if(bspeed>correction) {
-//    wheel(bSpeed-correction,bSpeed+correction);
-//    delay(10);
-//  }
+  //  if(bspeed>corr) {
+  if (corr == 0)
+    wheel(bSpeed, bSpeed);
+  else
+    wheel(bSpeed - corr, bSpeed + corr);
+  //    delay(10);
+  //  }
 
-
-
-   if(correction==0) wheel(bSpeed,bSpeed);
-   else if(correction<0) wheel(bSpeed-abs(correction),bSpeed+abs(correction));
-   else if(correction>0) wheel(bSpeed+abs(correction),bSpeed-abs(correction));
-  
+  // if (corr == 0) wheel(bSpeed, bSpeed);
+  //  else if(corr<0) wheel(bSpeed-abs(corr),bSpeed+abs(corr));
+  //  else if(corr>0) wheel(bSpeed+abs(corr),bSpeed-abs(corr));
 }

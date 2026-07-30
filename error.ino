@@ -3,10 +3,10 @@ void calcError()
   //  for(int i=0;i<sensor_count;i++){
   //
   //  }
+  pErr=err;                                           
   if (totalRead > 0)
   {
-    pError=error;                                           
-    error = wSum / totalRead - center;
+    err = ((float)wSum / totalRead) - center;
   }
 }
 // void calcPos()

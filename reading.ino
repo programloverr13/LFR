@@ -1,5 +1,11 @@
+void sFree()
+{
+    totalRead = 0;
+    wSum = 0;
+}
 void readSensors()
 {
+    sFree();
     for(uint8_t i=0;i<14;i++)
     {
         uint8_t b=15-i;
@@ -7,10 +13,6 @@ void readSensors()
         {
             digitalWrite(s[j],b%2);b/=2;
         }
-//        digitalWrite(s[0],b%2);b/=2;
-//        digitalWrite(s[1],b%2);b/=2;
-//        digitalWrite(s[2],b%2);b/=2;
-//        digitalWrite(s[3],b%2);b/=2;
         delayMicroseconds(50);
         reading[i]=analogRead(sig);
         if(i>=3 && i<=10){
@@ -18,6 +20,10 @@ void readSensors()
           totalRead+=reading[i];
         }
     }
+}
+void threshold()
+{
+    
 }
 void showReading()
 {
