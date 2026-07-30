@@ -9,7 +9,7 @@ void readSensors()
         }
         delayMicroseconds(50);
         reading[i]=analogRead(sig);
-        bw[i]=(analogRead(sig)>100)?1:0;
+        bw[i]=(analogRead(sig)>startBlack)?1:0;
         
         // if(i>=3 && i<=10){
         //   wSum+=(i+1)*reading[i];
@@ -25,7 +25,17 @@ void showReading()
 {
     for(uint8_t i=0;i<14;i++)
     {
-        Serial.print((reading[i]));//<100)?0:1);
+        Serial.print((reading[i]));
+        Serial.print("  ");
+    }
+    Serial.println();
+    delay(150);
+}
+void showBlack()
+{
+    for(uint8_t i=0;i<14;i++)
+    {
+        Serial.print((bw[i]));
         Serial.print("  ");
     }
     Serial.println();

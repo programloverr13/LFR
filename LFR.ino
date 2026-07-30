@@ -1,8 +1,8 @@
 const uint8_t s[4] = {2, 3, 11, 12};
 const uint8_t sig = A1;
 const uint8_t pwma = 5;
-const uint8_t ain1 = 7;
-const uint8_t ain2 = 8;
+const uint8_t ain1 = 8;
+const uint8_t ain2 = 7;
 const uint8_t pwmb = 6;
 const uint8_t bin1 = 9;
 const uint8_t bin2 = 10;
@@ -13,11 +13,11 @@ uint8_t bw[14];
 uint16_t wTh = 0;
 uint16_t bTh = 1023;
 
-const float kp = 40;
-const float kd = 40;
+const float kp = 10;
+const float kd = 60;
 float corr = 0;
-const uint8_t bSpeed = 0;
-const float center = 7.3f;
+const uint8_t bSpeed = 60;
+const float center = 7.66;
 float pErr = 0;
 float err = 0;
 uint16_t totalRead = 0;
@@ -25,6 +25,7 @@ uint32_t wSum = 0;
 
 const uint8_t tspdH = 180;
 const uint8_t tspdL = 60;
+uint16_t startBlack = 450;
 uint8_t isBlack = 0;
 uint8_t isLeft = 0;
 uint8_t isRight = 0;
@@ -45,27 +46,24 @@ void setup()
 }
 void loop()
 {
-    // readSensors();
+    readSensors();
+    isTurn();
 
-    // wheel(bSpeed, bSpeed);
-    // showReading();
-    // calcError();
-    // calcCorrect();
-    // mkCorrect();
-
-    // Serial.println(err);
-    // Serial.println(corr);
-    // delay(150);
-    // Serial.println();
-    // Serial.println();
-    // Serial.println();
-    // Serial.println();
-    // Serial.println();
+    showReading();
+    showBlack();
+    Serial.println(err);
+    Serial.println(corr);
+    delay(150);
+    Serial.println();
+    Serial.println();
+    Serial.println();
+    Serial.println();
+    Serial.println();
 }
 
 
-void readSensors();
-void showReading();
-void calcError();
-void calcCorrect();
-void mkCorrect();
+// void readSensors();
+// void showReading();
+// void calcError();
+// void calcCorrect();
+// void mkCorrect();

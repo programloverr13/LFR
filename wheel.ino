@@ -18,5 +18,5 @@ void wheel(int l,int r)
     else if(r<0) dwR(0,1);
     else dwR(0,0);
     analogWrite(pwmb,constrain(abs(r),0,255));
-
+    
 }
