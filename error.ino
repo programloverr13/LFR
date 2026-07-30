@@ -1,9 +1,11 @@
 void calcError()
 {
-  //  for(int i=0;i<sensor_count;i++){
-  //
-  //  }
-  pErr=err;                                           
+  for (uint8_t i = 3; i <= 10; i++)
+  {
+    wSum += (i + 1) * reading[i];
+    totalRead += reading[i];
+  }
+  pErr = err;
   if (totalRead > 0)
   {
     err = ((float)wSum / totalRead) - center;

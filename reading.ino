@@ -15,10 +15,12 @@ void readSensors()
         }
         delayMicroseconds(50);
         reading[i]=analogRead(sig);
-        if(i>=3 && i<=10){
-          wSum+=(i+1)*reading[i];
-          totalRead+=reading[i];
-        }
+        bw[i]=(analogRead(sig)>100)?1:0;
+        
+        // if(i>=3 && i<=10){
+        //   wSum+=(i+1)*reading[i];
+        //   totalRead+=reading[i];
+        // }
     }
 }
 void threshold()

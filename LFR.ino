@@ -9,6 +9,7 @@ const uint8_t bin2 = 10;
 
 const uint8_t sensor_count = 14;
 uint16_t reading[14];
+uint8_t bw[14];
 uint16_t wTh = 0;
 uint16_t bTh = 1023;
 
@@ -17,10 +18,16 @@ const float kd = 40;
 float corr = 0;
 const uint8_t bSpeed = 0;
 const float center = 7.3f;
-uint16_t totalRead = 0;
-uint32_t wSum = 0;
 float pErr = 0;
 float err = 0;
+uint16_t totalRead = 0;
+uint32_t wSum = 0;
+
+const uint8_t tspdH = 180;
+const uint8_t tspdL = 60;
+uint8_t isBlack = 0;
+uint8_t isLeft = 0;
+uint8_t isRight = 0;
 
 void setup()
 {
@@ -38,8 +45,9 @@ void setup()
 }
 void loop()
 {
+    // readSensors();
+
     // wheel(bSpeed, bSpeed);
-    readSensors();
     // showReading();
     // calcError();
     // calcCorrect();
