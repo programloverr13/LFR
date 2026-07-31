@@ -1,11 +1,11 @@
-const uint8_t s[4] = {2, 3, 11, 12};
+const uint8_t s[4] = {10, 3, 11, 12};
 const uint8_t sig = A1;
 const uint8_t pwma = 5;
 const uint8_t ain1 = 8;
 const uint8_t ain2 = 7;
 const uint8_t pwmb = 6;
 const uint8_t bin1 = 9;
-const uint8_t bin2 = 10;
+const uint8_t bin2 = 4;
 
 const uint8_t sensor_count = 14;
 uint16_t reading[14];
@@ -14,25 +14,30 @@ uint8_t bwRead[14];
 uint16_t wTh = 0;
 uint16_t bTh = 1023;
 
-const float kp = 15;
-const float kd = 10;
+const float kp = 25;
+const float kd = 30;
+const float ki = 0;
 float corr = 0;
 const uint8_t bSpeed = 60;
 const float center = 7.66;
 float pErr = 0;
 float err = 0;
+float minErr = 0.1;
+float I = 0;
+float maxI = 4;
 uint16_t totalRead = 0;
 uint32_t wSum = 0;
 
-const uint8_t tspdH = bSpeed+70;
-const uint8_t tspdL = 70;
-uint16_t startBlack = 400;
+const uint8_t turnHigh = bSpeed+30;
+const uint8_t turnLow = 70;
+uint16_t startBlack = 250;
 uint8_t blackAmount = 0;
 uint8_t downL = 0;
 uint8_t downR = 0;
 uint8_t isLeft = 0;
 uint8_t isRight = 0;
-
+uint8_t isCenter = 0;
+int backDelay=80;
 void setup()
 {
     pinMode(sig, INPUT);
@@ -50,11 +55,11 @@ void setup()
 void loop()
 {
     readSensors();
-    // calcError();
-    // calcCorrect();
-    // mkCorrect();
-    decide();
-    // serialMonitor();
+    fLine();
+//      decide();
+//    tL();
+     wheel(80,80);
+    serialMonitor();
 
 }
 

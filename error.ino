@@ -19,6 +19,7 @@ void calcError()
   Serial.print("err  ");
   Serial.println(err);
 }
+
 // void calcPos()
 //{
 //   pos=-1*(center-wSum/totalRead);

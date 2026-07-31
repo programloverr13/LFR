@@ -53,7 +53,7 @@ void serialMonitor()
 
     // String dec=decide();
     // Serial.println(dec);
-    Serial.println();
+    Serial.println(downL);
     Serial.println();
     Serial.println();
     Serial.println();
