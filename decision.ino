@@ -3,10 +3,13 @@ void tFree()
     blackAmount = 0;
     isLeft = 0;
     isRight = 0;
-    isCenter = 0;
     downL = 0;
     downR = 0;
 }
+int isCenter(){
+  readSensors();
+      return bwRead[6] + bwRead[7];
+    }
 void decide()
 {
     tFree();
@@ -26,14 +29,18 @@ void decide()
         else if (i > 10)
             downR += bwRead[i];
     }
-    isCenter = blackAmount + bwRead[6] + bwRead[7];
+    
+    
     if (blackAmount == 0)
     {
+      
         if (checkDownS() == 2)
         {
             tR();
-            delay(turnDelay);
+//            delay(turnDelay);
+//            Serial.println("downR");
         }
+        else if(checkDownS() == 1){tL();}
         else if (checkDownS() == 0)
             lost();
     }
@@ -67,26 +74,35 @@ void decide()
 }
 void fLine()
 {
+    lineOnLeft=(downL>1 & downR==0)? 1:0;
+    lineOnRight=(downR>1 & downL==0)? 1:0;
     calcError();
     calcCorrect();
     mkCorrect();
+    
 }
 void tL()
 {
     // aWheel(turnLow, turnHigh);
     aWheel(0, turnHigh);
     delay(backDelay);
+    while (isCenter() < 1)
+    {
     aWheel(-turnLow, turnHigh);
+    }
 }
 void tR()
 {
     aWheel(turnHigh, 0);
     delay(backDelay);
-    while (isCenter < 1)
+    Serial.println("tr");
+    while (isCenter() < 1)
     {
         aWheel(turnHigh, -turnLow);
+        int a=isCenter();Serial.println(a);
     }
-    Serial.println("tr");
+    Serial.println("finish");
+    
 }
 void CurveL()
 {
@@ -104,11 +120,7 @@ void intersection()
 {
     tL();
 }
-void lost()
-{
-    wheel(0, 0);
-    // tL();
-}
+
 int checkDownS()
 {
     if (downL > 0 && downR == 0)
@@ -130,5 +142,6 @@ void downS(int n)
         tR();
     case 3:
         tL();
+        
     }
 }

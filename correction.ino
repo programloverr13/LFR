@@ -3,15 +3,15 @@ void calcCorrect()
   float de = err - pErr;
   corr = (err * kp);
   
-  Serial.print("P corr  ");
-  Serial.println(corr);
+//  Serial.print("P corr  ");
+//  Serial.println(corr);
 
   corr += (kd * de);
-  Serial.print("PD corr  ");
-  Serial.println(corr);
-
-  Serial.print("de  ");
-  Serial.println(de);
+//  Serial.print("PD corr  ");
+//  Serial.println(corr);
+//
+//  Serial.print("de  ");
+//  Serial.println(de);
 
 //  if (abs(err) < 0.1 && isCenter > 0 && isLeft != 0 && isRight != 0 && abs(I+err) < maxI)
 //    I += err;

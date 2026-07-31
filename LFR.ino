@@ -1,5 +1,5 @@
 const uint8_t s[4] = {10, 3, 11, 12};
-const uint8_t sig = A1;
+const uint8_t sig = A0;
 const uint8_t pwma = 5;
 const uint8_t ain1 = 8;
 const uint8_t ain2 = 7;
@@ -36,7 +36,8 @@ uint8_t downL = 0;
 uint8_t downR = 0;
 uint8_t isLeft = 0;
 uint8_t isRight = 0;
-uint8_t isCenter = 0;
+uint8_t lineOnLeft=0;
+uint8_t    lineOnRight=0;
 int backDelay=100;
 int turnDelay=200;
 void setup()
@@ -52,17 +53,15 @@ void setup()
     pinMode(bin1, OUTPUT);
     pinMode(bin2, OUTPUT);
     Serial.begin(9600);
+    delay(3000);
 }
 void loop()
 {
     readSensors();
-//    fLine();
+//    showReading();
       decide();
-//      int u=checkDownS();
-//    tL();
-//     wheel(80,80);
-//    serialMonitor();
-//    Serial.println(u);
+      Serial.println(lineOnLeft);
+      Serial.println(lineOnRight);
 
 }
 

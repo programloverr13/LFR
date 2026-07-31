@@ -10,23 +10,23 @@ void dwR(uint8_t b1,uint8_t b2)
 }
 void wheel(int l,int r)
 {
-    if(l>0) dwL(1,0);
-    else  dwL(0,0);
-    analogWrite(pwma,constrain(abs(l),0,255));
-    if(r>0) dwR(1,0);
-    else dwR(0,0);
-    analogWrite(pwmb,constrain(abs(r),0,255));
+//    if(l>0) dwL(1,0);
+//    else  dwL(0,0);
+//    analogWrite(pwma,constrain(abs(l),0,255));
+//    if(r>0) dwR(1,0);
+//    else dwR(0,0);
+//    analogWrite(pwmb,constrain(abs(r),0,255));
     
 }
 void aWheel(int l,int r)
 {
-    if(l>0) dwL(1,0);
-    else if(l<0) dwL(0,1);
-    else dwL(0,0);
-    analogWrite(pwma,constrain(abs(l),0,255));
-    if(r>0) dwR(1,0);
-    else if(r<0) dwR(0,1);
-    else dwR(0,0);
-    analogWrite(pwmb,constrain(abs(r),0,255));
+//    if(l>0) dwL(1,0);
+//    else if(l<0) dwL(0,1);
+//    else dwL(0,0);
+//    analogWrite(pwma,constrain(abs(l),0,255));
+//    if(r>0) dwR(1,0);
+//    else if(r<0) dwR(0,1);
+//    else dwR(0,0);
+//    analogWrite(pwmb,constrain(abs(r),0,255));
     
 }

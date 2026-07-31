@@ -16,10 +16,10 @@ void calcError()
   {
     err = ((float)wSum / totalRead) - center;
   }
-  else
+//  else
 //    wheel(0,0);
-  Serial.print("err  ");
-  Serial.println(err);
+//  Serial.print("err  ");
+//  Serial.println(err);
 }
 
 // void calcPos()
