@@ -4,8 +4,8 @@ const uint8_t pwma = 5;
 const uint8_t ain1 = 8;
 const uint8_t ain2 = 7;
 const uint8_t pwmb = 6;
-const uint8_t bin1 = 9;
-const uint8_t bin2 = 4;
+const uint8_t bin1 = 4;
+const uint8_t bin2 = 9;
 
 const uint8_t sensor_count = 14;
 uint16_t reading[14];
@@ -15,7 +15,7 @@ uint16_t wTh = 0;
 uint16_t bTh = 1023;
 
 const float kp = 20;
-const float kd = 0;
+const float kd = 12;
 const float ki = 0;
 float corr = 0;
 const uint8_t bSpeed = 80;
@@ -29,7 +29,7 @@ uint16_t totalRead = 0;
 uint32_t wSum = 0;
 
 const uint8_t turnHigh = bSpeed+30;
-const uint8_t turnLow = 70;
+const uint8_t turnLow = bSpeed+30;
 uint16_t startBlack = 250;
 uint8_t blackAmount = 0;
 uint8_t downL = 0;
@@ -37,7 +37,8 @@ uint8_t downR = 0;
 uint8_t isLeft = 0;
 uint8_t isRight = 0;
 uint8_t isCenter = 0;
-int backDelay=80;
+int backDelay=100;
+int turnDelay=200;
 void setup()
 {
     pinMode(sig, INPUT);
@@ -55,11 +56,13 @@ void setup()
 void loop()
 {
     readSensors();
-    fLine();
-//      decide();
+//    fLine();
+      decide();
+//      int u=checkDownS();
 //    tL();
 //     wheel(80,80);
 //    serialMonitor();
+//    Serial.println(u);
 
 }
 

@@ -9,7 +9,8 @@ void tFree()
 }
 void decide()
 {
-    tFree(); int resetI=1;
+    tFree();
+    int resetI = 1;
     for (uint8_t i = 0; i < 14; i++)
     {
         if (i >= 3 && i <= 10)
@@ -26,22 +27,26 @@ void decide()
             downR += bwRead[i];
     }
     isCenter = blackAmount + bwRead[6] + bwRead[7];
-//    if (blackAmount == 0)
-//    {
-//        if (downS() == 0)
-//            lost();
-//        Serial.println("aWhite");
-//    }
+    if (blackAmount == 0)
+    {
+        if (checkDownS() == 2)
+        {
+            tR();
+            delay(turnDelay);
+        }
+        else if (checkDownS() == 0)
+            lost();
+    }
     // else if (blackAmount > 7)
     // {
     //     intersection();
     //     Serial.println("aBlack");
     // }
-    // else if (isLeft == 0 && isRight != 0)
-    // {
-    //     tR();
-    //     Serial.println("tR");
-    // }
+    //     else if (isLeft == 0 && isRight >1) //&& checkDownS()==0)
+    //     {
+    ////         tR();
+    //         Serial.println("tR");
+    //     }
     // else if (isRight == 0 && isLeft != 0)
     // {
     //     tL();
@@ -52,10 +57,13 @@ void decide()
     //     CurveL();
     //     Serial.println("tL");
     // }
-//    else
-        fLine(); resetI=0;
-    
-    if(resetI!=0) I=0;
+    else
+    {
+        fLine();
+        Serial.println("fline");
+    }
+    //        resetI=0;
+    //    if(resetI!=0) I=0;
 }
 void fLine()
 {
@@ -74,7 +82,11 @@ void tR()
 {
     aWheel(turnHigh, 0);
     delay(backDelay);
-    aWheel(turnHigh, -turnLow);
+    while (isCenter < 1)
+    {
+        aWheel(turnHigh, -turnLow);
+    }
+    Serial.println("tr");
 }
 void CurveL()
 {
@@ -99,9 +111,9 @@ void lost()
 }
 int checkDownS()
 {
-    if (downL > 0 && downR<1)
+    if (downL > 0 && downR == 0)
         return 1;
-    else if (downR > 0 && downL<1)
+    else if (downR > 0 && downL == 0)
         return 2;
     else if (downL > 0 && downR > 0)
         return 3;
@@ -110,12 +122,13 @@ int checkDownS()
 }
 void downS(int n)
 {
-  switch(n){
+    switch (n)
+    {
     case 1:
-        tR();
-    case 2:
         tL();
+    case 2:
+        tR();
     case 3:
         tL();
-  }
+    }
 }
