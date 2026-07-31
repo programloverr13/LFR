@@ -14,11 +14,11 @@ uint8_t bwRead[14];
 uint16_t wTh = 0;
 uint16_t bTh = 1023;
 
-const float kp = 25;
-const float kd = 30;
+const float kp = 20;
+const float kd = 0;
 const float ki = 0;
 float corr = 0;
-const uint8_t bSpeed = 60;
+const uint8_t bSpeed = 80;
 const float center = 7.66;
 float pErr = 0;
 float err = 0;
@@ -58,8 +58,8 @@ void loop()
     fLine();
 //      decide();
 //    tL();
-     wheel(80,80);
-    serialMonitor();
+//     wheel(80,80);
+//    serialMonitor();
 
 }
 

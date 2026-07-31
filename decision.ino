@@ -97,15 +97,25 @@ void lost()
     wheel(0, 0);
     // tL();
 }
-int downS()
+int checkDownS()
 {
     if (downL > 0 && downR<1)
-        tR();
+        return 1;
     else if (downR > 0 && downL<1)
-        tL();
+        return 2;
     else if (downL > 0 && downR > 0)
-        tL();
+        return 3;
     else
         return 0;
-    return 1;
+}
+void downS(int n)
+{
+  switch(n){
+    case 1:
+        tR();
+    case 2:
+        tL();
+    case 3:
+        tL();
+  }
 }
