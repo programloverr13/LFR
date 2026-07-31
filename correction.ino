@@ -15,7 +15,8 @@ void calcCorrect()
 
 void mkCorrect()
 {
-  if (corr == 0)
+  if(abs(corr) < 0.1 && downS()==0);
+  else if (abs(corr) < 0.1)
     wheel(bSpeed, bSpeed);
     else
       wheel(bSpeed + corr, bSpeed - corr);

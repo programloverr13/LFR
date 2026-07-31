@@ -3,21 +3,30 @@ void tFree()
     blackAmount = 0;
     isLeft = 0;
     isRight = 0;
+    downL=0;
+    downR=0;
 }
 void decide()
 {
     tFree();
-    for (uint8_t i = 3; i <= 10; i++)
+    for (uint8_t i = 0; i < 14; i++)
     {
-        blackAmount += bwRead[i];
-        if (i <= 5)
-            isLeft += bwRead[i];
-        if (i >= 8)
-            isRight += bwRead[i];
+        if (i >= 3 && i <= 10)
+        {
+            blackAmount += bwRead[i];
+            if (i <= 5)
+                isLeft += bwRead[i];
+            if (i >= 8)
+                isRight += bwRead[i];
+        }
+        else if (i < 3)
+            downL += bwRead[i];
+        else if (i > 10)
+            downR += bwRead[i];
     }
-    if (blackAmount ==0)
+    if (blackAmount == 0)
     {
-        lost();
+        if(downS()==0) lost();
         Serial.println("aWhite");
     }
     else if (blackAmount > 7)
@@ -41,11 +50,6 @@ void decide()
         Serial.println("fLine");
     }
 }
-// void turn(char st)
-// {
-//     switch(st)
-//     {}
-// }
 void fLine()
 {
     calcError();
@@ -68,4 +72,16 @@ void tR()
 void intersection()
 {
     tL();
+}
+void lost()
+{
+    wheel(0, 0);
+    // tL();
+}
+int downS()
+{
+    if(downL>0) tR();
+        else if(downR>0) tL();
+        else return 0;
+    return 1;
 }

@@ -26,8 +26,10 @@ uint32_t wSum = 0;
 
 const uint8_t tspdH = bSpeed+70;
 const uint8_t tspdL = 70;
-uint16_t startBlack = 450;
+uint16_t startBlack = 400;
 uint8_t blackAmount = 0;
+uint8_t downL = 0;
+uint8_t downR = 0;
 uint8_t isLeft = 0;
 uint8_t isRight = 0;
 
@@ -48,8 +50,11 @@ void setup()
 void loop()
 {
     readSensors();
+    // calcError();
+    // calcCorrect();
+    // mkCorrect();
     decide();
-    serialMonitor();
+    // serialMonitor();
 
 }
 
