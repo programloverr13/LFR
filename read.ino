@@ -1,4 +1,4 @@
-void readSensors() {
+void read() {
   for (uint8_t i = 0; i < 14; i++) {
     uint8_t b = 15 - i;
     for (uint8_t j = 0; j < 4; j++) {
@@ -23,7 +23,7 @@ void showReading() {
   Serial.println();
   // delay(150);
 }
-void showBlack() {
+void showBW() {
   for (uint8_t i = 0; i < 14; i++) {
     Serial.print((bwRead[i]));
     Serial.print("  ");
@@ -32,8 +32,9 @@ void showBlack() {
   // delay(150);
 }
 void run_ShowDetails() {
-//   int n = run();
-    showReading();showBlack();
+  //   int n = run();
+  showReading();
+  showBW();
   Serial.print("State: ");
   switch (run()) {
     case 0:
@@ -61,13 +62,13 @@ void run_ShowDetails() {
       Serial.println("tR");
       break;
     case 6:
-      Serial.println("14-Black");
+      Serial.println("14-Black_STOP");
       break;
 
     default:
       break;
   }
-    Serial.println();
+  Serial.println();
   Serial.println();
   Serial.println();
   Serial.println();

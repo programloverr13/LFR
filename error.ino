@@ -12,6 +12,7 @@ void calcError() {
   if (totalRead > 0) {
     err = ((float)wSum / totalRead) - center;
   }
+  
   //  else
   //    wheel(0,0);
 }

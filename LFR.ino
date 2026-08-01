@@ -60,9 +60,6 @@ void setup() {
   delay(3000);
 }
 void loop() {
-  readSensors();
-  showReading();
-
-  run();
+  read();
   run_ShowDetails();
 }

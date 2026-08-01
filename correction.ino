@@ -18,7 +18,7 @@ void mkCorrect() {
   if (abs(corr) < 0.2)  // tune this
     wheel(bSpeed, bSpeed);
   else
-    wheel(bSpeed + corr, bSpeed - corr);
+    wheel((int)(bSpeed + corr), (int)(bSpeed - corr));
 
   // else if (corr < 0)
   //   wheel(100, 0);

@@ -1,6 +1,21 @@
-int run() {
-  tFree();
-  int resetI = 1;
+void tFree() {
+  blackAmount = 0;
+  isLeft = 0;
+  isRight = 0;
+  downL = 0;
+  downR = 0;
+}
+int isCenter() {
+  read();
+  calcBW();
+  return bwRead[6] + bwRead[7];
+}
+// int lineFoundCheck(int m, int n, int p) {
+//   read();
+//   calcBW();
+//   return bwRead[m] + bwRead[n] + bwRead[p];
+// }
+void calcBW() {
   for (uint8_t i = 0; i < 14; i++) {
     if (i >= 3 && i <= 10) {
       blackAmount += bwRead[i];
@@ -13,24 +28,36 @@ int run() {
     else if (i > 10)
       downR += bwRead[i];
   }
-
+}
+void modeApply() {
+  switch (MODE) {
+    case 0:
+      tL();
+      break;
+    case 1:
+      tR();
+      break;
+    default:
+      break;
+  }
+}
+int run() {
+  tFree();
+  calcBW();
+  int resetI = 1;
   // t-shape
   if (blackAmount < 2 && checkDownS() == 3) {
-    if (MODE == 0)
-      tL();
-    else if (MODE == 1)
-      tR();
+    modeApply();
     return 1;
+  } else if (blackAmount >= 7 && downL > 0 && downR > 0) {
+    wheel(0, 0);
+    return 6;
   }
   // plus shape
   else if (blackAmount >= 6) {
     if (FRONT == 0) {
-      if (MODE == 0)
-        tL();
-      else if (MODE == 1)
-        tR();
+      modeApply();
     }
-    return 2;
   } else if (blackAmount == 0) {
     switch (checkDownS()) {
       case 1:
@@ -38,6 +65,9 @@ int run() {
         break;
       case 2:
         tR();
+        break;
+      case 3:
+        modeApply();
         break;
       case 0:
         lost();
@@ -54,9 +84,6 @@ int run() {
              isCenter() > 0 && (MODE == 1 || LEFT_RIGHT == 1)) {
     tR();
     return 5;
-  } else if (blackAmount == 8 && downL == 3 && downR == 3) {
-    wheel(0, 0);
-    return 6;
   } else {
     fLine();
     return 0;
@@ -65,11 +92,11 @@ int run() {
   //    if(resetI!=0) I=0;
 }
 void fLine() {
-  if (downL > 1 & downR == 0) {
+  if (downL > 0 && downR == 0) {
     lineOnLeft = 1;
     lineOnRight = 0;
   }
-  if (downR > 1 & downL == 0) {
+  if (downR > 0 && downL == 0) {
     lineOnRight = 1;
     lineOnLeft = 0;
   }
@@ -78,23 +105,27 @@ void fLine() {
   mkCorrect();
 }
 void tL() {
-  Serial.println("tl");
-  aWheel(0, turnHigh);
-  delay(backDelay);
-  while (turningOff(3, 4, 5) < 1) {
+  while (isCenter() != 0) {
+    aWheel(0, turnHigh);
+  }
+  // delay(backDelay);
+  while (isCenter() == 0) {
     aWheel(-turnLow, turnHigh);
   }
 }
 void tR() {
-  Serial.println("tr");
-  aWheel(turnHigh, 0);
-  delay(backDelay);
-  while (turningOff(8, 9, 10) < 1) {
+  while (isCenter() != 0) {
+    aWheel(turnHigh, 0);
+  }
+  wheel(0, 0);
+  delay(20);
+  // delay(backDelay);
+  while (isCenter() == 0) {
     aWheel(turnHigh, -turnLow);
   }
+  wheel(0, 0);
+  delay(20);
 }
-
-
 
 int checkDownS() {
   if (downL > 0 && downR == 0)
@@ -103,6 +134,6 @@ int checkDownS() {
     return 2;
   else if (downL > 0 && downR > 0)
     return 3;
-  else
+  else if (downL == 0 && downR == 0)
     return 0;
 }

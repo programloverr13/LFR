@@ -1,20 +1,28 @@
 void lost() {
+  delay(100);
   if (lineOnLeft == 1) {
     tL();
     lineOnLeft = 0;
-    Serial.println("lef");
+    // Serial.println("lef");
   } else if (lineOnRight == 1) {
     tR();
     lineOnRight = 0;
-    Serial.println("r");
+    // Serial.println("r");
   }
 
   else {
     aWheel(turnHigh, 0);
-    Serial.println("tr");
+    // Serial.println("tr");
     delay(backDelay);
-    for (int i = -turnLow; turningOff(8, 9, 10) < 1 && i < 255; i++) {
+    int t = millis();
+    for (int i = -turnLow; blackAmount == 0 && checkDownS() == 0 && i < turnLow;
+         i++) {
+      read();
       aWheel(turnHigh, i);
+      if ((millis() - t) > 2000) {
+        wheel(0, 0);
+        break;
+      }
     }
   }
 
@@ -32,6 +40,6 @@ void lost() {
   //    }
 
   // tL();
-  Serial.println("im lost");
+  // Serial.println("im lost");
   // wheel(0,0);
 }
