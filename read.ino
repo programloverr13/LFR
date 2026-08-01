@@ -31,49 +31,49 @@ void showBW() {
   Serial.println();
   // delay(150);
 }
-void run_ShowDetails() {
-  //   int n = run();
-  showReading();
-  showBW();
-  Serial.print("State: ");
-  switch (run()) {
-    case 0:
-      Serial.println("fline");
-      Serial.print("err: ");
-      Serial.println(err);
-      Serial.print("PD corr: ");
-      Serial.println(corr);
-      Serial.print("de: ");
-      Serial.println(de);
-      break;
-    case 1:
-      Serial.println("t-shape");
-      break;
-    case 2:
-      Serial.println("plus-shape");
-      break;
-    case 3:
-      Serial.println("frontBlack");
-      break;
-    case 4:
-      Serial.println("tL");
-      break;
-    case 5:
-      Serial.println("tR");
-      break;
-    case 6:
-      Serial.println("14-Black_STOP");
-      break;
-
-    default:
-      break;
-  }
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-}
+//void run_ShowDetails() {
+//  //   int n = run();
+//  showReading();
+//  showBW();
+//  Serial.print("State: ");
+//  switch (run()) {
+//    case 0:
+//      Serial.println("fline");
+//      Serial.print("err: ");
+//      Serial.println(err);
+//      Serial.print("PD corr: ");
+//      Serial.println(corr);
+//      Serial.print("de: ");
+//      Serial.println(de);
+//      break;
+//    case 1:
+//      Serial.println("t-shape");
+//      break;
+//    case 2:
+//      Serial.println("plus-shape");
+//      break;
+//    case 3:
+//      Serial.println("frontBlack");
+//      break;
+//    case 4:
+//      Serial.println("tL");
+//      break;
+//    case 5:
+//      Serial.println("tR");
+//      break;
+//    case 6:
+//      Serial.println("14-Black_STOP");
+//      break;
+//
+//    default:
+//      break;
+//  }
+//  Serial.println();
+//  Serial.println();
+//  Serial.println();
+//  Serial.println();
+//  Serial.println();
+//  Serial.println();
+//  Serial.println();
+//  Serial.println();
+//}

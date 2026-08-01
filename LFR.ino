@@ -20,10 +20,10 @@ uint8_t bwRead[14];
 // uint16_t bTh = 1023;
 
 const float kp = 20;
-const float kd = 18;
+const float kd = 5;
 const float ki = 0;
 float corr = 0;
-const uint8_t bSpeed = 180;
+const uint8_t bSpeed = 80;
 const float center = 7.5;
 float pErr = 0;
 float err = 0;
@@ -34,9 +34,9 @@ float maxI = 4;
 uint16_t totalRead = 0;
 uint32_t wSum = 0;
 
-const uint8_t turnHigh = bSpeed + 30;
-const uint8_t turnLow = bSpeed + 30;
-uint16_t startBlack = 250;
+const uint8_t turnHigh = bSpeed + 40;
+const uint8_t turnLow = bSpeed + 40;
+uint16_t startBlack = 400;
 uint8_t blackAmount = 0;
 uint8_t downL = 0;
 uint8_t downR = 0;
@@ -60,6 +60,8 @@ void setup() {
   delay(3000);
 }
 void loop() {
-  read();
-  run_ShowDetails();
+//  wheel(0,150);
+read();
+//showBW();
+run();
 }
